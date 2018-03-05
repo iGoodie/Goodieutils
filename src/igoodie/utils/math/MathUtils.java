@@ -30,6 +30,24 @@ public final class MathUtils {
 		return start + (stop-start) * amt;
 	}
 	
+	public static int clamp(int value, int min, int max) {
+		if(value < min) return min;
+		if(value > max) return max;
+		return value;
+	}
+	
+	public static float clamp(float value, float min, float max) {
+		if(value < min) return min;
+		if(value > max) return max;
+		return value;
+	}
+	
+	public static float resolveError(float num, float resolution) {
+		float f10 = (float) Math.pow(10, resolution);
+		int i10 = (int) f10;
+		return (int)(num*i10)/f10;
+	}
+	
 	/* Float wrappers */
 	public static float cos(float x) {
 		return (float) Math.cos(x);

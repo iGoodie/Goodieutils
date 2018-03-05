@@ -15,7 +15,7 @@ import igoodie.utils.log.ConsolePrinter;
 
 public class FileUtils {
 	
-	private static final String SEPERATOR = File.pathSeparator;
+	public static final String SEPERATOR = File.pathSeparator;
 	
 	private static String externalDataPath = System.getProperty("user.dir") + SEPERATOR + "data";
 	
