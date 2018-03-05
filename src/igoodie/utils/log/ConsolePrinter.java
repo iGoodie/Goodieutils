@@ -1,4 +1,4 @@
-package log;
+package igoodie.utils.log;
 
 import java.io.File;
 import java.io.FileNotFoundException;

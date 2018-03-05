@@ -1,4 +1,4 @@
-package math;
+package igoodie.utils.math;
 
 import java.util.Random;
 

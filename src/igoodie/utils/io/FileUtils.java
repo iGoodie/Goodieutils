@@ -1,4 +1,4 @@
-package utils;
+package igoodie.utils.io;
 
 import java.awt.Image;
 import java.io.BufferedReader;
@@ -11,7 +11,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import log.ConsolePrinter;
+import igoodie.utils.log.ConsolePrinter;
 
 public class FileUtils {
 	

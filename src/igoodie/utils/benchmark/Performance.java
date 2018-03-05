@@ -1,4 +1,4 @@
-package utils;
+package igoodie.utils.benchmark;
 
 public final class Performance {
 	public static final long BYTE_PER_MEGABYTE = 1024L * 1024L; //1MB = 1024*1024B
