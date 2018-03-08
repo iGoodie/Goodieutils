@@ -20,7 +20,7 @@ public class FileUtils {
 	/**
 	 * File path seperator used in FileUtils
 	 */
-	public static final String SEPERATOR = File.pathSeparator;
+	public static final String SEPERATOR = File.separator;
 	
 	/**
 	 * External data path used by <b><i>writeExternalFoo(..)/readExternalBar(..)</b></i> methods
