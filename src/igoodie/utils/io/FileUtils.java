@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
 
 import javax.imageio.ImageIO;
 
@@ -123,7 +124,6 @@ public class FileUtils {
 	//TODO impl write methods
 	
 	/* Read Image */
-	
 	/**
 	 * Reads binary from given file path and returns it as a Image. Given path is parsed
 	 * relative to the external data path.
@@ -153,6 +153,76 @@ public class FileUtils {
 		try {
 			return ImageIO.read(file);
 		}
+		catch (IOException e) {
+			return null;
+		}
+	}
+
+	/* Write Bin */
+	/**
+	 * Writes given binary to given path. Given path is parsed
+	 * relative to the external data path.
+	 * @param str Binary data to be written on given path
+	 * @param externalPath Path relative to external data path
+	 * @see {@link #setExternalDataPath(String)}
+	 */
+	public static void writeExternalBin(byte[] data, String externalPath) {
+		writeBin(data, externalDataPath + SEPERATOR + externalPath);
+	}
+	
+	/**
+	 * Writes given binary to given file.
+	 * @param str String data to be written on given path
+	 * @param path Path to the file to be overwritten.
+	 */
+	public static void writeBin(byte[] data, String path) {
+		writeBin(data, new File(path));
+	}
+	
+	/**
+	 * Writes given binary to given file.
+	 * @param str String data to be written on given path
+	 * @param file File to be overwritten.
+	 */
+	public static void writeBin(byte[] data, File file) {
+		try {
+			Files.write(file.toPath(), data);
+		} 
+		catch (IOException e) {
+			ConsolePrinter.error("An IO error occurred writing byte array: %s", NetUtils.asHexString(data));
+		}
+	}
+	
+	/* Read Bin */
+	/**
+	 * Reads binary from given file path. Given path is parsed
+	 * relative to the external data path.
+	 * @param externalPath Path relative to external data path
+	 * @return Read byte data
+	 * @see {@link #setExternalDataPath(String)}
+	 */
+	public static byte[] readExternalBin(String externalPath) {
+		return readBin(externalDataPath + SEPERATOR + externalPath);
+	}
+	
+	/**
+	 * Reads binary from given file.
+	 * @param path File to be read.
+	 * @return Read byte data
+	 */
+	public static byte[] readBin(String path) {
+		return readBin(new File(path));
+	}
+	
+	/**
+	 * Reads binary from given file..
+	 * @param file File to be read.
+	 * @return Read byte data
+	 */
+	public static byte[] readBin(File file) {
+		try {
+			return Files.readAllBytes(file.toPath());
+		} 
 		catch (IOException e) {
 			return null;
 		}
