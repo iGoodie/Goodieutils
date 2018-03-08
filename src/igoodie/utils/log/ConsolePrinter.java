@@ -58,6 +58,9 @@ public class ConsolePrinter {
 		print(loggingStream, "[DEBUG]", msg, args);
 	}
 
+		else debug(msg, args);
+	}
+	
 	/* Helper Methods */
 	private static void print(PrintStream stream, String prefix, String x, Object...args) {
 		if(stream == null) return;
