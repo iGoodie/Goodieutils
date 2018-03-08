@@ -58,6 +58,8 @@ public class ConsolePrinter {
 		print(loggingStream, "[DEBUG]", msg, args);
 	}
 
+	public static void debug(boolean enabled, String msg, Object...args) {
+		if(!enabled) return;
 		else debug(msg, args);
 	}
 	
