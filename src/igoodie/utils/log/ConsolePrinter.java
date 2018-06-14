@@ -2,6 +2,8 @@ package igoodie.utils.log;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintStream;
 
 public class ConsolePrinter {
@@ -117,6 +119,14 @@ public class ConsolePrinter {
 	public static void debug(boolean enabled, String msg, Object...args) {
 		if(!enabled) return;
 		else debug(msg, args);
+	}
+	
+	public static void suppressPrints(Runnable r) {
+		PrintStream out = System.out;
+		PrintStream nullPrinter = new PrintStream(new OutputStream(){public void write(int b) throws IOException {}});
+		System.setOut(nullPrinter);
+		r.run();
+		System.setOut(out);
 	}
 	
 	/* Helper Methods */

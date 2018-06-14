@@ -114,5 +114,5 @@ public final class Performance {
 		}
 		
 		return totalTime / trialNumber;
-	}	
+	}
 }

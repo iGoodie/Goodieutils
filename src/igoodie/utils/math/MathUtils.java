@@ -121,6 +121,24 @@ public final class MathUtils {
 		return (int)(num*i10)/f10;
 	}
 	
+	/**
+	 * Calculates a^b where a and b are integers faster than native.
+	 * @param a Base
+	 * @param b Exponent
+	 * @return Returns (a^b)
+	 */
+	public static int fastIntPow(int a, int b) {
+		int res = 1;
+		while(b>0) {
+			if((b&1) == 1) {
+				res *= a;
+			}
+			b >>= 1;
+			a *= a;
+		}
+		return res;
+	}
+	
 	/* Float wrappers */
 	/**
 	 * Float wrapper for {@link Math.cos}

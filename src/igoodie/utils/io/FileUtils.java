@@ -28,7 +28,7 @@ public class FileUtils {
 	private static String externalDataPath = System.getProperty("user.dir") + SEPERATOR + "data";
 	
 	/**
-	 * Replaces external data path used by <b><i>writeExternalFoo(..)/readExternalBar(..)</b></i> methods
+	 * Replaces external data path used by <b><i>writeExternalFoo(..) / readExternalBar(..)</b></i> methods
 	 * with given path.
 	 * @param path New path of external data path
 	 */
@@ -36,7 +36,15 @@ public class FileUtils {
 		externalDataPath = path;
 	}
 	
-	/* Write string */
+	/**
+	 * Returns the external data path used by <b><i>writeExternalX(..) / readExternalX(..)</i></b> methods
+	 * @return External data path
+	 */
+	public static String getExternalDataPath() {
+		return externalDataPath;
+	}
+	
+	/* Write String */
 	/**
 	 * Writes given string to given path. Given path is parsed
 	 * relative to the external data path.
@@ -64,6 +72,8 @@ public class FileUtils {
 	 */
 	public static void writeString(String str, File file) {
 		try {
+			file.getParentFile().mkdirs();
+			if(!file.exists()) file.createNewFile();
 			FileWriter fw = new FileWriter(file);
 			BufferedWriter bw = new BufferedWriter(fw);
 			bw.write(str);
@@ -186,6 +196,8 @@ public class FileUtils {
 	 */
 	public static void writeBin(byte[] data, File file) {
 		try {
+			file.getParentFile().mkdirs();
+			if(!file.exists()) file.createNewFile();
 			Files.write(file.toPath(), data);
 		} 
 		catch (IOException e) {
@@ -227,4 +239,8 @@ public class FileUtils {
 			return null;
 		}
 	}
+
+	/* Write Object */
+	
+	/* Read Object */
 }

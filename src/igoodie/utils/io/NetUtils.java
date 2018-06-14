@@ -23,8 +23,8 @@ public abstract class NetUtils {
 	 */
 	public static short asShort(byte[] buffer, int offset) {
 		return (short) (
-				  ((buffer[offset+0] & 0xFF) << 8) 
-				| ((buffer[offset+1] & 0xFF) << 0)
+				  ((buffer[offset+0]) << 8) 
+				| ((buffer[offset+1]) << 0)
 		);
 	}
 	
@@ -44,10 +44,10 @@ public abstract class NetUtils {
 	 * @return Parsed integer value
 	 */
 	public static int asInt(byte[] buffer, int offset) {
-		return    ((buffer[offset+0] & 0xFF) << 24)
-				| ((buffer[offset+1] & 0xFF) << 16) 
-				| ((buffer[offset+2] & 0xFF) << 8) 
-				| ((buffer[offset+3] & 0xFF) << 0);
+		return    ((buffer[offset+0]) << 24)
+				| ((buffer[offset+1]) << 16) 
+				| ((buffer[offset+2]) << 8) 
+				| ((buffer[offset+3]) << 0);
 	}
 	
 	/**
@@ -66,14 +66,14 @@ public abstract class NetUtils {
 	 * @return Parsed long value
 	 */
 	public static long asLong(byte[] buffer, int offset) {
-		return    ((long)(buffer[offset+0] & 0xFF) << 56)
-				| ((long)(buffer[offset+1] & 0xFF) << 48) 
-				| ((long)(buffer[offset+2] & 0xFF) << 40) 
-				| ((long)(buffer[offset+3] & 0xFF) << 32)
-				| ((long)(buffer[offset+4] & 0xFF) << 24)
-				| ((long)(buffer[offset+5] & 0xFF) << 16) 
-				| ((long)(buffer[offset+6] & 0xFF) << 8) 
-				| ((long)(buffer[offset+7] & 0xFF) << 0);
+		return    ((long)(buffer[offset+0]) << 56)
+				| ((long)(buffer[offset+1]) << 48) 
+				| ((long)(buffer[offset+2]) << 40) 
+				| ((long)(buffer[offset+3]) << 32)
+				| ((long)(buffer[offset+4]) << 24)
+				| ((long)(buffer[offset+5]) << 16) 
+				| ((long)(buffer[offset+6]) << 8) 
+				| ((long)(buffer[offset+7]) << 0);
 	}
 	
 	/**
@@ -93,10 +93,10 @@ public abstract class NetUtils {
 	 */
 	public static float asFloat(byte[] buffer, int offset) {
 		return Float.intBitsToFloat(
-				  ((buffer[offset+0] & 0xFF) << 24)
-				| ((buffer[offset+1] & 0xFF) << 16) 
-				| ((buffer[offset+2] & 0xFF) << 8) 
-				| ((buffer[offset+3] & 0xFF) << 0)
+				  ((buffer[offset+0]) << 24)
+				| ((buffer[offset+1]) << 16) 
+				| ((buffer[offset+2]) << 8) 
+				| ((buffer[offset+3]) << 0)
 		);
 	}
 	
@@ -117,14 +117,14 @@ public abstract class NetUtils {
 	 */
 	public static double asDouble(byte[] buffer, int offset) {
 		return Double.longBitsToDouble(
-				  ((long)(buffer[offset+0] & 0xFF) << 56)
-				| ((long)(buffer[offset+1] & 0xFF) << 48) 
-				| ((long)(buffer[offset+2] & 0xFF) << 40) 
-				| ((long)(buffer[offset+3] & 0xFF) << 32)
-				| ((long)(buffer[offset+4] & 0xFF) << 24)
-				| ((long)(buffer[offset+5] & 0xFF) << 16) 
-				| ((long)(buffer[offset+6] & 0xFF) << 8) 
-				| ((long)(buffer[offset+7] & 0xFF) << 0)
+				  ((long)(buffer[offset+0]) << 56)
+				| ((long)(buffer[offset+1]) << 48) 
+				| ((long)(buffer[offset+2] ) << 40) 
+				| ((long)(buffer[offset+3]) << 32)
+				| ((long)(buffer[offset+4]) << 24)
+				| ((long)(buffer[offset+5]) << 16) 
+				| ((long)(buffer[offset+6]) << 8) 
+				| ((long)(buffer[offset+7]) << 0)
 		);
 	}
 
