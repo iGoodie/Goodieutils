@@ -1,18 +1,23 @@
-package igoodie.utils.io;
+package com.programmer.igoodie.utils.io;
 
 import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.util.Properties;
 
 import javax.imageio.ImageIO;
 
-import igoodie.utils.log.ConsolePrinter;
+import com.programmer.igoodie.utils.log.ConsolePrinter;
 
 public class FileUtils {
 	
@@ -44,7 +49,11 @@ public class FileUtils {
 		return externalDataPath;
 	}
 	
-	/* Write String */
+	public static File getExternalFile(String fileName) {
+		return new File(externalDataPath + SEPERATOR + fileName);
+	}
+	
+	/* String */
 	/**
 	 * Writes given string to given path. Given path is parsed
 	 * relative to the external data path.
@@ -74,16 +83,15 @@ public class FileUtils {
 		try {
 			file.getParentFile().mkdirs();
 			if(!file.exists()) file.createNewFile();
-			FileWriter fw = new FileWriter(file);
-			BufferedWriter bw = new BufferedWriter(fw);
+			OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8);
+			BufferedWriter bw = new BufferedWriter(osw);
 			bw.write(str);
 			bw.close();
 		} catch (IOException e) {
 			ConsolePrinter.error("An IO error occurred writing string: %s", str);
 		}
 	}
-	
-	/* Read String */
+
 	/**
 	 * Reads binary from given file path and returns it as a String. Given path is parsed
 	 * relative to the external data path.
@@ -111,8 +119,8 @@ public class FileUtils {
 	 */
 	public static String readString(File file) {
 		try {
-			FileReader fr = new FileReader(file);
-			BufferedReader br = new BufferedReader(fr);
+			InputStreamReader isr = new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8);
+			BufferedReader br = new BufferedReader(isr);
 			String str="", line;
 			while((line=br.readLine()) != null) {
 				str += line + "\n"; 
@@ -130,10 +138,9 @@ public class FileUtils {
 		}
 	}
 
-	/* Write Image */
+	/* Image */
 	//TODO impl write methods
-	
-	/* Read Image */
+
 	/**
 	 * Reads binary from given file path and returns it as a Image. Given path is parsed
 	 * relative to the external data path.
@@ -168,7 +175,7 @@ public class FileUtils {
 		}
 	}
 
-	/* Write Bin */
+	/* Binary */
 	/**
 	 * Writes given binary to given path. Given path is parsed
 	 * relative to the external data path.
@@ -204,8 +211,7 @@ public class FileUtils {
 			ConsolePrinter.error("An IO error occurred writing byte array: %s", NetUtils.asHexString(data));
 		}
 	}
-	
-	/* Read Bin */
+
 	/**
 	 * Reads binary from given file path. Given path is parsed
 	 * relative to the external data path.
@@ -240,7 +246,49 @@ public class FileUtils {
 		}
 	}
 
-	/* Write Object */
+	/* Object */
 	
-	/* Read Object */
+	/* Properties */
+	public static void writeExternalProperties(Properties prop, String externalPath) {
+		writeProperties(prop, new File(externalDataPath + SEPERATOR + externalPath));
+	}
+	
+	public static void writeProperties(Properties prop, File file) {
+		try {
+			prop.store(new OutputStreamWriter(new FileOutputStream(file), "UTF-8"), null);
+		}
+		catch(IOException e) {
+			ConsolePrinter.error("An IO error occurred writing properties object: %o", prop);
+		}
+	}
+	
+	public static Properties readExternalProperties(String externalPath) {
+		return readProperties(new File(externalDataPath + SEPERATOR + externalPath));
+	}
+	
+	public static Properties readProperties(File file) {
+		try {
+			Properties prop = new Properties();
+			FileInputStream fis = new FileInputStream(file);
+			prop.load(fis);
+			return prop;
+		}
+		catch(IOException e) {
+			return null;
+		}
+	}
+
+	/* InputStream */
+	public static InputStream readAsInputStream(File file) {
+		try {
+			return new FileInputStream(file);
+		} 
+		catch (FileNotFoundException e) {
+			return null;
+		}
+	}
+	
+	public static InputStream readExternalAsInputStream(String externalPath) {
+		return readAsInputStream(new File(externalDataPath + SEPERATOR + externalPath));
+	}
 }

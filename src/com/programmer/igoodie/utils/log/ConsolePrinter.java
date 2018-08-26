@@ -1,4 +1,4 @@
-package igoodie.utils.log;
+package com.programmer.igoodie.utils.log;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -121,6 +121,10 @@ public class ConsolePrinter {
 		else debug(msg, args);
 	}
 	
+	/**
+	 * Executes given runnable by attempting to suppress System.out prints.
+	 * @param r Runnable to be executed
+	 */
 	public static void suppressPrints(Runnable r) {
 		PrintStream out = System.out;
 		PrintStream nullPrinter = new PrintStream(new OutputStream(){public void write(int b) throws IOException {}});
@@ -134,6 +138,7 @@ public class ConsolePrinter {
 		if(stream == null) return;
 		if(args.length != 0) x = String.format(x, args);
 		stream.print(prefix);
+		stream.print(" ");
 		stream.println(x);
 	}
 	

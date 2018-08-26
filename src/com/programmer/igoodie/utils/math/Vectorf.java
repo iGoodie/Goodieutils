@@ -1,4 +1,4 @@
-package igoodie.utils.math;
+package com.programmer.igoodie.utils.math;
 
 public class Vectorf {
 	
@@ -120,12 +120,12 @@ public class Vectorf {
 	
 	/* Random 2D & 3D */
 	public Vectorf randomize2D() {
-		return normalizeWithAngle(MathUtils.randomFloat() * MathUtils.PI * 2);
+		return normalizeWithAngle(Randomizer.randomFloat() * MathUtils.PI * 2);
 	}
 
 	public Vectorf randomize3D() {
-		float angle = MathUtils.randomFloat() * MathUtils.PI * 2;
-		float vz = MathUtils.randomFloat(-1, 1);
+		float angle = Randomizer.randomFloat() * MathUtils.PI * 2;
+		float vz = Randomizer.randomFloat(-1, 1);
 		float vx = MathUtils.sqrt(1-vz*vz) * MathUtils.cos(angle);
 		float vy = MathUtils.sqrt(1-vz*vz) * MathUtils.sin(angle);
 		return set(vx, vy, vz);
@@ -225,6 +225,21 @@ public class Vectorf {
 	}
 
 	/* Cross */
+	public Vectorf cross(Vectorf v) {
+		return cross(v.x, v.y);
+	}
+	
+	public Vectorf cross(float x, float y) {
+		return cross(x, y, 0);
+	}
+	
+	public Vectorf cross(float x, float y, float z) {
+		float crossX = this.y * z - y * this.z;
+		float crossY = this.z * x - z * this.x;
+		float crossZ = this.x * y - x * this.y;
+		
+		return new Vectorf(crossX, crossY, crossZ);
+	}
 
 	/* Normalize & Limiters */
 	public Vectorf normalize() {

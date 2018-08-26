@@ -1,6 +1,6 @@
-package igoodie.utils.structures.shapes;
+package com.programmer.igoodie.utils.structures.shapes;
 
-import igoodie.utils.structures.Entity;
+import com.programmer.igoodie.utils.structures.Entity;
 
 public class Rectangle {
 

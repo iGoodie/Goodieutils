@@ -1,14 +1,15 @@
-package igoodie.test.collisiondetection;
+package com.programmer.igoodie.test.collisiondetection;
 
 import java.util.ArrayList;
 
-import igoodie.utils.structures.shapes.Rectangle;
-import igoodie.utils.structures.spatial.QuadTree;
+import com.programmer.igoodie.utils.structures.shapes.Rectangle;
+import com.programmer.igoodie.utils.structures.spatial.QuadTree;
+
 import processing.core.PApplet;
 
 /**
  * Test case for quadtree.
- * {@link igoodie.utils.structures.spatial.QuadTree} can be used to store static entities.
+ * {@link com.programmer.igoodie.utils.structures.spatial.QuadTree} can be used to store static entities.
  * In this case, there are N entities awaits to be rendered as if they collide or not. </br>
  * RMB will change the detection mode from BruteForce to QTree. </br>
  * LMB will insert a new entity at clicked position. </br>

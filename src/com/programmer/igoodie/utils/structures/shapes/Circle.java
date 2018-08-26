@@ -1,7 +1,7 @@
-package igoodie.utils.structures.shapes;
+package com.programmer.igoodie.utils.structures.shapes;
 
-import igoodie.utils.math.MathUtils;
-import igoodie.utils.structures.Entity;
+import com.programmer.igoodie.utils.math.MathUtils;
+import com.programmer.igoodie.utils.structures.Entity;
 
 public class Circle {
 

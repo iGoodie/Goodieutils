@@ -1,10 +1,6 @@
-package igoodie.utils.math;
-
-import java.util.Random;
+package com.programmer.igoodie.utils.math;
 
 public final class MathUtils {
-	
-	private static final Random random = new Random();
 	
 	/* Float field replicates */
 	/**
@@ -16,57 +12,6 @@ public final class MathUtils {
 	 * Float E constant of {@link Math.E}
 	 */
 	public static final float E = (float) Math.E;
-	
-	/**
-	 * Replace random seed of the randomizer with given one
-	 * @param seed New random seed
-	 */
-	public static void randomSeed(long seed) {
-		random.setSeed(seed);
-	}
-	
-	/**
-	 * Pseudo-randomize random seed of the randomizer
-	 */
-	public static void randomSeed() {
-		random.setSeed(System.currentTimeMillis());
-	}
-	
-	/**
-	 * Generates and returns a random int between {@link Integer.MIN_VALUE} and {@link Integer.MAX_VALUE}
-	 * @return A random integer value
-	 */
-	public static int randomInt() {
-		return random.nextInt();
-	}
-	
-	/**
-	 * Generates and returns a random int between [<b>min</b> and <b>max</b>]
-	 * @param min Minimum boundary for rng
-	 * @param max Maximum boundary for rng
-	 * @return A random integer value
-	 */
-	public static int randomInt(int min, int max) {
-		return random.nextInt(max - min + 1) + min;
-	}
-
-	/**
-	 * Generates and returns a random float between [0.0f and 1.0f)
-	 * @return
-	 */
-	public static float randomFloat() {
-		return random.nextFloat();
-	}
-	
-	/**
-	 * Generates and returns a random float between [<b>min</b> and <b>max</b>]
-	 * @param min Minimum boundary for rng
-	 * @param max Maximum boundary for rng
-	 * @return A random integer value
-	 */
-	public static float randomFloat(float min, float max) {
-		return random.nextFloat() * (max-min) + min;
-	}
 	
 	/**
 	 * The linear interpolation between <b>start</b> and <b>stop</b>
@@ -137,6 +82,35 @@ public final class MathUtils {
 			a *= a;
 		}
 		return res;
+	}
+	
+	public static int gcd(int a, int b) {
+		while(a!=b) {
+			if(a>b)
+				a -= b;
+			else
+				b -= a;
+		}
+		return a;
+	}
+
+	public static int lcm(int a, int b) {
+		return a*(b/gcd(a, b));
+	}
+	
+	public static int positiveMod(int a, int b) {
+		int mod = a % b;
+		if(mod<0) mod += b;
+		return mod;
+	}
+	
+	/* Int wrappers */
+	/**
+	 * Integer wrapper for {@link Math.signum}
+	 */
+	public static int signum(int num) {
+		if(num == 0) return 0;
+		return num<0 ? -1 : 1;
 	}
 	
 	/* Float wrappers */
