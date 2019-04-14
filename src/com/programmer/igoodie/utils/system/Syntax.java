@@ -36,5 +36,20 @@ public final class Syntax {
 	public static boolean falsey(Object o) {
 		return !truthy(o);
 	}
+	
+	/**
+	 * Equivalent of <b>IN</b> operation in SQL
+	 * @param o Object to be searched
+	 * @param things Objects to be iterated
+	 * @return Whether first object is in or not
+	 */
+	public static boolean in(Object o, Object...things) {
+		for(Object thing : things) {
+			if(o.equals(thing))
+				return true;
+		}
+		
+		return false;
+	}
 
 }
